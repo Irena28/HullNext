@@ -1,5 +1,6 @@
 import os
 from urllib.parse import urlparse
+
 from bs4 import BeautifulSoup
 from scrape import download_resource
 
@@ -28,6 +29,6 @@ def update_html_and_download_images(html_file_path):
         f.write(str(soup))
         f.truncate()
 
-# Traverse all folders and update each 'index.html
+# Traverse all folders and update each 'index.html'
 for html_file in traverse_folders('data'):
     update_html_and_download_images(html_file)

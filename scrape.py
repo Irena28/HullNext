@@ -72,4 +72,3 @@ def run():
                 subdirectory = path.strip('/').split('/')[-1]
                 target_directory = os.path.join(root_dir, subdirectory)
                 download_website(url, target_directory)
-run()

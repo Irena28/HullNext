@@ -9,6 +9,18 @@ def traverse_folders(root_folder):
         if 'index.html' in files:
             yield os.path.join(root, 'index.html')
 
+def save_image_links(html_file_path):
+    with open(html_file_path, 'r', encoding='utf-8') as f:
+        soup = BeautifulSoup(f, 'html.parser')
+        img_folder = os.path.join(os.path.dirname(html_file_path), 'images')
+        os.makedirs(img_folder, exist_ok=True)
+        image_links_file = os.path.join(img_folder, 'image_links.txt')
+        with open(image_links_file, 'w') as img_links:
+            for img in soup.find_all('img'):
+                img_url = img.get('src')
+                if img_url:
+                    img_links.write(img_url + '\n')
+
 def update_html_and_download_images(html_file_path):
     with open(html_file_path, 'r+', encoding='utf-8') as f:
         soup = BeautifulSoup(f, 'html.parser')
@@ -31,4 +43,4 @@ def update_html_and_download_images(html_file_path):
 
 # Traverse all folders and update each 'index.html'
 for html_file in traverse_folders('data'):
-    update_html_and_download_images(html_file)
+    save_image_links(html_file)

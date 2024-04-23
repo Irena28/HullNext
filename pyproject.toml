@@ -8,6 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 selenium = "^4.19.0"
+requests = "^2.31.0"
+beautifulsoup4 = "^4.12.3"
 
 
 [build-system]
